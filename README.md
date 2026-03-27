@@ -320,17 +320,13 @@ After training, the `models/` folder will contain:
 
 ## Screenshots
 
-> Add screenshots of your running application below to showcase the project visually.
-
 | Screenshot | Description |
 |------------|-------------|
-| *[Insert Dashboard Screenshot]* | Streamlit dashboard — main page |
-| *[Insert Confusion Matrix Screenshot]* | Confusion matrix visualization |
-| *[Insert ROC Curve Screenshot]* | ROC curve comparison across models |
-| *[Insert Feature Importance Screenshot]* | Feature importance bar chart |
-| *[Insert Prediction Screenshot]* | Real-time prediction results |
-
-> **Tip:** Take screenshots after running the dashboard with `streamlit run app.py` and replace the placeholders above.
+| <img src="assets/dashboard.png" width="600"> | **Streamlit dashboard** — Overview of Traffic and Model Performance |
+| <img src="assets/traffic_distribution.png" width="600"> | **Traffic Distribution** — Breakdown of network traffic across categories |
+| <img src="assets/confusion_matrix.png" width="600"> | **Confusion Matrix** — Visualization of actual vs predicted attack classes |
+| <img src="assets/roc_curve.png" width="600"> | **ROC Curve** — TPR vs FPR analysis across multiple threat classes |
+| <img src="assets/precision_recall.png" width="600"> | **Precision-Recall Curve** — Evaluation of model's detection quality |
 
 ---
 
