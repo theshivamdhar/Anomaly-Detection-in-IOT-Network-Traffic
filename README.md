@@ -1,4 +1,4 @@
-<h1 align="center">🛡️ IoT Intrusion Detection System</h1>
+<h1 align="center">IoT Intrusion Detection System</h1>
 
 <p align="center">
   <b>Machine Learning-Based Network Anomaly Detection for IoT Environments</b><br>
@@ -14,25 +14,25 @@
 </p>
 
 <p align="center">
-  <a href="#-features">Features</a> •
-  <a href="#-dataset-instructions">Dataset</a> •
-  <a href="#-installation">Installation</a> •
-  <a href="#-how-to-run">How to Run</a> •
-  <a href="#-results">Results</a> •
-  <a href="#-screenshots">Screenshots</a>
+  <a href="#features">Features</a> •
+  <a href="#dataset-instructions">Dataset</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#how-to-run">How to Run</a> •
+  <a href="#results">Results</a> •
+  <a href="#screenshots">Screenshots</a>
 </p>
 
 ---
 
-## 📖 About the Project
+## About the Project
 
 The number of IoT devices is growing rapidly — smart homes, industrial sensors, wearables — and every connected device is a potential entry point for cyber attacks. Traditional firewalls rely on known attack signatures and fail against zero-day threats.
 
 This project builds an **Intrusion Detection System (IDS)** that uses machine learning to **learn what normal network traffic looks like** and automatically flag anomalies — detecting attacks it has never seen before.
 
-> 🎓 **B.Tech CSE Minor Project — 2026**
+> **B.Tech CSE Minor Project — 2026**
 
-### 🔑 Why This Matters
+### Why This Matters
 
 | Question | Answer |
 |----------|--------|
@@ -42,20 +42,20 @@ This project builds an **Intrusion Detection System (IDS)** that uses machine le
 
 ---
 
-## ✨ Features
+## Features
 
-- 🔍 **Multi-class Attack Detection** — Classifies traffic as Normal, DoS, Port Scan, or Data Exfiltration
-- 🔄 **Binary & Multiclass Modes** — Switch between binary (Normal vs Attack) and detailed multiclass detection
-- 🤖 **3 ML Models Compared** — Random Forest, Decision Tree, and XGBoost with full performance comparison
-- 📊 **Rich Evaluation Suite** — Confusion matrices, ROC curves, Precision-Recall curves, feature importance plots
-- 🔁 **5-Fold Cross-Validation** — Robust training with stratified CV to prevent overfitting
-- 🌐 **Streamlit Web Dashboard** — Interactive UI for real-time predictions, CSV upload, and visual exploration
-- 🧪 **Feature Engineering** — 4 derived features (`byte_ratio`, `packet_rate`, `src_dst_ratio`, `error_flag_interact`)
-- 📈 **Permutation Importance** — Model-agnostic feature importance analysis
+- **Multi-class Attack Detection** — Classifies traffic as Normal, DoS, Port Scan, or Data Exfiltration
+- **Binary & Multiclass Modes** — Switch between binary (Normal vs Attack) and detailed multiclass detection
+- **3 ML Models Compared** — Random Forest, Decision Tree, and XGBoost with full performance comparison
+- **Rich Evaluation Suite** — Confusion matrices, ROC curves, Precision-Recall curves, feature importance plots
+- **5-Fold Cross-Validation** — Robust training with stratified CV to prevent overfitting
+- **Streamlit Web Dashboard** — Interactive UI for real-time predictions, CSV upload, and visual exploration
+- **Feature Engineering** — 4 derived features (`byte_ratio`, `packet_rate`, `src_dst_ratio`, `error_flag_interact`)
+- **Permutation Importance** — Model-agnostic feature importance analysis
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|------------|
@@ -69,26 +69,26 @@ This project builds an **Intrusion Detection System (IDS)** that uses machine le
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 IOT_Minor/
 │
-├── data/                          # ⚠️ NOT included in repo (see Dataset section)
-│   ├── ML-EdgeIIoT-dataset.csv    #    Main Edge-IIoT dataset (~78 MB)
-│   ├── dataset.csv                #    Processed/synthetic dataset
-│   └── iot_demo_dataset.csv       #    Demo dataset
+├── data/                          # ⚠ NOT included in repo (see Dataset section)
+│   ├── ML-EdgeIIoT-dataset.csv    #   Main Edge-IIoT dataset (~78 MB)
+│   ├── dataset.csv                #   Processed/synthetic dataset
+│   └── iot_demo_dataset.csv       #   Demo dataset
 │
-├── models/                        # ⚠️ NOT included in repo (generated during training)
-│   ├── random_forest.pkl          #    Trained Random Forest model
-│   ├── decision_tree.pkl          #    Trained Decision Tree model
-│   ├── xgboost.pkl                #    Trained XGBoost model
-│   ├── scaler_*.pkl               #    Fitted scalers
-│   ├── label_encoder_*.pkl        #    Label encoders
-│   ├── confusion_matrix_*.png     #    Confusion matrix plots
-│   ├── roc_curve_*.png            #    ROC curve plots
-│   ├── pr_curve_*.png             #    Precision-Recall curve plots
-│   └── feature_importance_*.png   #    Feature importance plots
+├── models/                        # ⚠ NOT included in repo (generated during training)
+│   ├── random_forest.pkl          #   Trained Random Forest model
+│   ├── decision_tree.pkl          #   Trained Decision Tree model
+│   ├── xgboost.pkl                #   Trained XGBoost model
+│   ├── scaler_*.pkl               #   Fitted scalers
+│   ├── label_encoder_*.pkl        #   Label encoders
+│   ├── confusion_matrix_*.png     #   Confusion matrix plots
+│   ├── roc_curve_*.png            #   ROC curve plots
+│   ├── pr_curve_*.png             #   Precision-Recall curve plots
+│   └── feature_importance_*.png   #   Feature importance plots
 │
 ├── app.py                         # Streamlit dashboard application
 ├── train_rf.py                    # Model training & evaluation script
@@ -96,19 +96,20 @@ IOT_Minor/
 ├── utils.py                       # Utility functions (preprocessing, metrics)
 ├── requirements.txt               # Python dependencies
 ├── Synopsis_Minor_Project.md      # Project synopsis document
-└── README.md                      # You are here!
+└── README.md                      # You are here
 ```
 
 ---
 
-## 📦 Dataset Instructions
+## Dataset Instructions
 
-> ⚠️ **The dataset and trained models are NOT included in this repository** due to GitHub's 100 MB file size limit.
+> **⚠ Important:** The dataset and trained models are **not included** in this repository due to GitHub's 100 MB file size limit.
 
-### Option A: Download the Dataset
+### Option A — Download the Dataset
 
-📥 **Download from Google Drive:**
-> [📎 PUT YOUR GOOGLE DRIVE LINK HERE]
+Download from Google Drive:
+
+> [PUT YOUR GOOGLE DRIVE LINK HERE]
 
 After downloading, place the CSV file inside the `data/` folder:
 
@@ -118,24 +119,23 @@ IOT_Minor/
     └── ML-EdgeIIoT-dataset.csv    ← Place the file here
 ```
 
-### Option B: Contact Me
+### Option B — Contact Me
 
-📧 If the download link is unavailable, feel free to reach out:
-> **Email:** [PUT YOUR EMAIL HERE]
+If the download link is unavailable, reach out via email: **theshivamdhar@gmail.com**
 
-### Option C: Generate a Synthetic Dataset
+### Option C — Generate a Synthetic Dataset
 
-If you just want to test the project without the real dataset, you can generate a synthetic dataset:
+To test the project without the real dataset, generate a synthetic one:
 
 ```bash
 python generate_dataset.py
 ```
 
-This creates `data/dataset.csv` with 10,000 synthetic network flows — enough to train and test all models.
+This creates `data/dataset.csv` with 10,000 synthetic network flows — sufficient to train and evaluate all models.
 
-### 🗂️ About the Dataset
+### About the Dataset
 
-The **Edge-IIoT dataset** contains real-world IoT network traffic with labelled attack categories. Key characteristics:
+The **Edge-IIoT dataset** contains real-world IoT network traffic with labelled attack categories.
 
 | Property | Details |
 |----------|---------|
@@ -147,15 +147,12 @@ The **Edge-IIoT dataset** contains real-world IoT network traffic with labelled 
 
 ---
 
-## 🚀 Installation
-
-Follow these steps to set up the project on your machine.
+## Installation
 
 ### Prerequisites
 
-- **Python 3.10 or higher** installed ([Download Python](https://www.python.org/downloads/))
-- **Git** installed ([Download Git](https://git-scm.com/downloads))
-- A terminal (PowerShell on Windows, Terminal on Mac/Linux)
+- **Python 3.10 or higher** — [Download Python](https://www.python.org/downloads/)
+- **Git** — [Download Git](https://git-scm.com/downloads)
 
 ### Step-by-Step Setup
 
@@ -186,15 +183,13 @@ pip install -r requirements.txt
 
 **4. Add the dataset**
 
-Follow the [Dataset Instructions](#-dataset-instructions) above to either download or generate the dataset.
-
-✅ **Setup complete!** You're ready to train models and launch the dashboard.
+Follow the [Dataset Instructions](#dataset-instructions) above to download, request, or generate the dataset.
 
 ---
 
-## ▶️ How to Run
+## How to Run
 
-### Step 1: Train the Models
+### Step 1 — Train the Models
 
 Train all three models (Random Forest, Decision Tree, XGBoost) on the dataset.
 
@@ -210,9 +205,9 @@ python train_rf.py --data data/dataset.csv --mode binary
 python train_rf.py --data data/dataset.csv --mode multiclass
 ```
 
-> 💡 **What happens:** The script preprocesses the data, engineers features, trains all models, runs cross-validation, generates evaluation plots, and saves everything to the `models/` folder.
+> The script preprocesses data, engineers features, trains all models, runs cross-validation, generates evaluation plots, and saves everything to the `models/` folder.
 
-### Step 2: Launch the Streamlit Dashboard
+### Step 2 — Launch the Dashboard
 
 ```bash
 streamlit run app.py
@@ -224,10 +219,10 @@ This opens a web dashboard in your browser where you can:
 - View confusion matrices, ROC curves, and feature importance
 - Explore model comparison metrics
 
-### Quick Start (All Commands)
+### Quick Reference (All Commands)
 
 ```bash
-# 1. Generate synthetic dataset (if you don't have the real one)
+# 1. Generate synthetic dataset (if needed)
 python generate_dataset.py
 
 # 2. Train models — binary mode
@@ -242,7 +237,7 @@ streamlit run app.py
 
 ---
 
-## 🔬 Model Training Details
+## Model Training Details
 
 ### Pipeline Flow
 
@@ -276,8 +271,8 @@ Save Models & Plots → models/ folder
 
 ### Engineered Features
 
-| Feature | Formula | What It Captures |
-|---------|---------|-----------------|
+| Feature | Formula | Purpose |
+|---------|---------|---------|
 | `byte_ratio` | dst_bytes / (src_bytes + 1) | Data flow direction — high in exfiltration |
 | `packet_rate` | packet_size / (duration + 0.01) | Throughput — spikes during DoS |
 | `src_dst_ratio` | src_bytes / (dst_bytes + 1) | Inverse flow asymmetry |
@@ -286,18 +281,18 @@ Save Models & Plots → models/ folder
 ### Saved Outputs
 
 After training, the `models/` folder will contain:
-- ✅ Trained model files (`.pkl`) — Random Forest, Decision Tree, XGBoost
-- ✅ Scalers and label encoders (`.pkl`)
-- ✅ Confusion matrix heatmaps (`.png`)
-- ✅ ROC curves (`.png`)
-- ✅ Precision-Recall curves (`.png`)
-- ✅ Feature importance plots (`.png`)
-- ✅ Cross-validation results (`.csv`)
-- ✅ Model comparison table (`.csv`)
+- Trained model files (`.pkl`) — Random Forest, Decision Tree, XGBoost
+- Scalers and label encoders (`.pkl`)
+- Confusion matrix heatmaps (`.png`)
+- ROC curves (`.png`)
+- Precision-Recall curves (`.png`)
+- Feature importance plots (`.png`)
+- Cross-validation results (`.csv`)
+- Model comparison table (`.csv`)
 
 ---
 
-## 📊 Results
+## Results
 
 ### Performance Summary (Binary Mode)
 
@@ -311,7 +306,7 @@ After training, the `models/` folder will contain:
 
 - **Random Forest** and **XGBoost** consistently outperform Decision Tree
 - Most important features: `connection_rate`, `packet_rate`, `dst_bytes`, `srv_count`
-- XGBoost handles class imbalance better with built-in regularization
+- XGBoost handles class imbalance effectively with built-in regularization
 
 ### Attack Signatures Learned
 
@@ -323,9 +318,9 @@ After training, the `models/` folder will contain:
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
-> Add screenshots of your running application here to showcase the project visually.
+> Add screenshots of your running application below to showcase the project visually.
 
 | Screenshot | Description |
 |------------|-------------|
@@ -335,35 +330,35 @@ After training, the `models/` folder will contain:
 | *[Insert Feature Importance Screenshot]* | Feature importance bar chart |
 | *[Insert Prediction Screenshot]* | Real-time prediction results |
 
-> 💡 **Tip:** Take screenshots after running the dashboard with `streamlit run app.py` and replace the placeholders above.
+> **Tip:** Take screenshots after running the dashboard with `streamlit run app.py` and replace the placeholders above.
 
 ---
 
-## ⚠️ Limitations
+## Limitations
 
 - **Dataset not included** — Must be downloaded separately or generated synthetically due to GitHub size limits
-- **Synthetic data limitations** — Generated distributions approximate real traffic but don't replicate it exactly
-- **No temporal modelling** — Each flow is classified independently; slow/sequential attacks may be missed
-- **Not real-time** — The pipeline loads all data into memory; production use requires streaming integration
-- **No per-prediction explainability** — Feature importance is global, not per-sample (SHAP integration would help)
+- **Synthetic data** — Generated distributions approximate real traffic but do not replicate it exactly
+- **No temporal modelling** — Each flow is classified independently; slow or sequential attacks may be missed
+- **Batch processing only** — The pipeline loads all data into memory; production use requires streaming integration
+- **Global explainability only** — Feature importance is global, not per-sample; SHAP integration would improve interpretability
 
 ---
 
-## 🚀 Future Improvements
+## Future Improvements
 
-- 🌐 **Real-time packet capture** — Integrate with Scapy or tcpdump for live traffic analysis
-- 🧠 **Deep Learning models** — Add LSTM or Transformer for sequential traffic patterns
-- 📡 **API deployment** — Expose predictions via FastAPI or Flask REST API
-- 🐳 **Containerization** — Docker support for easy deployment
-- 🔍 **SHAP explainability** — Per-prediction feature attribution for analyst trust
-- 📊 **Real-world dataset validation** — Test on BoT-IoT, IoT-23, CIC-IoT-2023
-- 🔒 **Federated learning** — Privacy-preserving distributed training across IoT networks
+- **Real-time packet capture** — Integration with Scapy or tcpdump for live traffic analysis
+- **Deep Learning models** — LSTM or Transformer architectures for sequential traffic patterns
+- **API deployment** — REST API via FastAPI or Flask for production-grade predictions
+- **Containerization** — Docker support for reproducible deployment
+- **SHAP explainability** — Per-prediction feature attribution for analyst trust
+- **Real-world validation** — Testing on BoT-IoT, IoT-23, CIC-IoT-2023 datasets
+- **Federated learning** — Privacy-preserving distributed training across IoT networks
 
 ---
 
-## 📚 References
+## References
 
-- Breiman, L. (2001). Random Forests. *Machine Learning*, 45(1), 5-32.
+- Breiman, L. (2001). Random Forests. *Machine Learning*, 45(1), 5–32.
 - Chen, T., & Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System. *KDD '16*.
 - Meidan, Y., et al. (2018). N-BaIoT: Network-Based Detection of IoT Botnet Attacks. *IEEE Pervasive Computing*.
 - Koroniotis, N., et al. (2019). Towards the Development of Realistic Botnet Dataset in the IoT. *Future Generation Computer Systems*.
@@ -371,21 +366,15 @@ After training, the `models/` folder will contain:
 
 ---
 
-## 👤 Author
+## Author
 
 | | |
 |---|---|
 | **Name** | Shivam Dhar |
 | **Program** | B.Tech CSE |
 | **GitHub** | [@theshivamdhar](https://github.com/theshivamdhar) |
-| **Email** | *[PUT YOUR EMAIL HERE]* |
+| **Email** | theshivamdhar@gmail.com |
 
 ---
 
-<p align="center">
-  ⭐ <b>If you found this project helpful, consider giving it a star!</b> ⭐
-</p>
-
-<p align="center">
-  <i>Built with ❤️ for academic research — B.Tech Minor Project 2026</i>
-</p>
+<p align="center"><i>B.Tech Minor Project — Academic use only — 2026</i></p>
