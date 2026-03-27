@@ -109,7 +109,7 @@ IOT_Minor/
 
 Download from Google Drive:
 
-> [PUT YOUR GOOGLE DRIVE LINK HERE]
+> [Anomaly Detection in IoT Network Traffic](https://drive.google.com/drive/folders/1WSKC48AaI9dDUKR2y7_8LZ8FwrAW7c7n?usp=drive_link)
 
 After downloading, place the CSV file inside the `data/` folder:
 
@@ -298,9 +298,9 @@ After training, the `models/` folder will contain:
 
 | Model | Accuracy | Precision | Recall | F1 Score | ROC-AUC |
 |-------|----------|-----------|--------|----------|---------|
-| Random Forest | ~0.99 | ~0.99 | ~0.99 | ~0.99 | ~1.00 |
-| Decision Tree | ~0.98 | ~0.98 | ~0.98 | ~0.98 | ~0.99 |
-| XGBoost | ~0.99 | ~0.99 | ~0.99 | ~0.99 | ~1.00 |
+| Random Forest | ~0.91 | ~0.91 | ~0.91 | ~0.91 | ~0.99 |
+| Decision Tree | ~0.71 | ~0.87 | ~0.71 | ~0.72 | ~0.95 |
+| XGBoost | ~0.92 | ~0.93 | ~0.92 | ~0.93 | ~0.99 |
 
 ### Key Insights
 
