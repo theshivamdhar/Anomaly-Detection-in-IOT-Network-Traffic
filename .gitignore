@@ -1,0 +1,29 @@
+# Large data files
+data/
+*.csv
+
+# Model artifacts
+models/
+*.pkl
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Streamlit
+.streamlit/
+
+# Misc
+*.log

@@ -1,0 +1,15 @@
+# ──────────────────────────────────────────────────────────────────
+# requirements.txt — IoT Network Anomaly Detection System
+# Install:  pip install -r requirements.txt
+# Tested with Python 3.14
+# ──────────────────────────────────────────────────────────────────
+
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+streamlit
+joblib
+plotly
+xgboost
