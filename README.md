@@ -327,6 +327,9 @@ After training, the `models/` folder will contain:
 | <img src="assets/confusion_matrix.png" width="600"> | **Confusion Matrix** — Visualization of actual vs predicted attack classes |
 | <img src="assets/roc_curve.png" width="600"> | **ROC Curve** — TPR vs FPR analysis across multiple threat classes |
 | <img src="assets/precision_recall.png" width="600"> | **Precision-Recall Curve** — Evaluation of model's detection quality |
+| <img src="assets/model_comparison.png" width="600"> | **Model Comparison** — Comparison of Accuracy, Precision, Recall, and F1 metrics across models |
+| <img src="assets/feature_importance.png" width="600"> | **Feature Importance** — Top 12 features contributing to model predictions |
+| <img src="assets/permutation_importance.png" width="600"> | **Permutation Importance** — Feature importance calculated via accuracy drop |
 
 ---
 
