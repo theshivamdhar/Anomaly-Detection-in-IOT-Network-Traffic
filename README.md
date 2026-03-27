@@ -1,323 +1,391 @@
-# IoT Intrusion Detection System
+<h1 align="center">🛡️ IoT Intrusion Detection System</h1>
 
-A machine learning pipeline that detects cyber attacks in IoT network traffic using Random Forest classification.
+<p align="center">
+  <b>Machine Learning-Based Network Anomaly Detection for IoT Environments</b><br>
+  <i>Using Random Forest, Decision Tree & XGBoost — with a Streamlit Dashboard</i>
+</p>
 
-> B.Tech Minor Project -- 2026
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/ML-Scikit--Learn-F7931E?logo=scikit-learn&logoColor=white" />
+  <img src="https://img.shields.io/badge/XGBoost-189FDD?logo=xgboost&logoColor=white" />
+  <img src="https://img.shields.io/badge/Dashboard-Streamlit-FF4B4B?logo=streamlit&logoColor=white" />
+  <img src="https://img.shields.io/badge/License-Academic-green" />
+</p>
+
+<p align="center">
+  <a href="#-features">Features</a> •
+  <a href="#-dataset-instructions">Dataset</a> •
+  <a href="#-installation">Installation</a> •
+  <a href="#-how-to-run">How to Run</a> •
+  <a href="#-results">Results</a> •
+  <a href="#-screenshots">Screenshots</a>
+</p>
 
 ---
 
-## 1. The Problem
+## 📖 About the Project
 
-IoT devices are multiplying fast -- smart homes, wearables, industrial sensors. Every device is a potential entry point for attackers. Traditional security tools check packets against known attack signatures, but they cannot catch new or unknown threats.
+The number of IoT devices is growing rapidly — smart homes, industrial sensors, wearables — and every connected device is a potential entry point for cyber attacks. Traditional firewalls rely on known attack signatures and fail against zero-day threats.
 
-We need a system that **learns what normal traffic looks like** and flags anything that deviates.
+This project builds an **Intrusion Detection System (IDS)** that uses machine learning to **learn what normal network traffic looks like** and automatically flag anomalies — detecting attacks it has never seen before.
 
-### Why this matters
+> 🎓 **B.Tech CSE Minor Project — 2026**
+
+### 🔑 Why This Matters
 
 | Question | Answer |
-| -------- | ------ |
-| What is the risk? | IoT devices lack built-in security and are easy targets for botnets, DDoS, and data theft |
-| Why not use firewalls? | Signature-based tools only catch known attacks. Zero-day threats pass through undetected |
-| Why machine learning? | ML learns traffic patterns from data, so it can detect anomalies it has never seen before |
+|----------|--------|
+| What is the risk? | IoT devices lack built-in security — easy targets for botnets, DDoS, and data theft |
+| Why not just use firewalls? | Signature-based tools only catch known attacks. New/zero-day threats pass through |
+| Why machine learning? | ML learns traffic patterns from data, detecting anomalies it has never been trained on |
 
 ---
 
-## 2. The Solution
+## ✨ Features
 
-This project is a complete intrusion detection pipeline with four components:
+- 🔍 **Multi-class Attack Detection** — Classifies traffic as Normal, DoS, Port Scan, or Data Exfiltration
+- 🔄 **Binary & Multiclass Modes** — Switch between binary (Normal vs Attack) and detailed multiclass detection
+- 🤖 **3 ML Models Compared** — Random Forest, Decision Tree, and XGBoost with full performance comparison
+- 📊 **Rich Evaluation Suite** — Confusion matrices, ROC curves, Precision-Recall curves, feature importance plots
+- 🔁 **5-Fold Cross-Validation** — Robust training with stratified CV to prevent overfitting
+- 🌐 **Streamlit Web Dashboard** — Interactive UI for real-time predictions, CSV upload, and visual exploration
+- 🧪 **Feature Engineering** — 4 derived features (`byte_ratio`, `packet_rate`, `src_dst_ratio`, `error_flag_interact`)
+- 📈 **Permutation Importance** — Model-agnostic feature importance analysis
 
-- **Synthetic Dataset Generator** -- creates realistic IoT traffic with labelled attack types
-- **Random Forest Classifier** -- learns to distinguish normal traffic from three attack categories
-- **Evaluation Pipeline** -- measures performance with multiple metrics, curves, and visualisations
-- **Streamlit Dashboard** -- optional web UI for interactive predictions and exploration
+---
 
-### Pipeline Flow
+## 🛠️ Tech Stack
 
-```text
-Raw CSV Data
-     ↓
-Preprocessing (clean, deduplicate, impute)
-     ↓
-Feature Engineering (4 derived features)
-     ↓
-Train/Test Split (80/20, stratified)
-     ↓
-Feature Scaling (StandardScaler)
-     ↓
-Model Training (Random Forest + Decision Tree)
-     ↓
-Evaluation (metrics, confusion matrix, ROC, PR curves)
-     ↓
-Prediction Output / Dashboard
+| Layer | Technology |
+|-------|------------|
+| Language | Python 3.10+ |
+| ML Models | Scikit-learn (Random Forest, Decision Tree), XGBoost |
+| Data Processing | Pandas, NumPy |
+| Visualization | Matplotlib, Seaborn, Plotly |
+| Web Dashboard | Streamlit |
+| Serialization | Joblib |
+| Dataset | Edge-IIoT Dataset / Synthetic IoT Traffic |
+
+---
+
+## 📁 Project Structure
+
+```
+IOT_Minor/
+│
+├── data/                          # ⚠️ NOT included in repo (see Dataset section)
+│   ├── ML-EdgeIIoT-dataset.csv    #    Main Edge-IIoT dataset (~78 MB)
+│   ├── dataset.csv                #    Processed/synthetic dataset
+│   └── iot_demo_dataset.csv       #    Demo dataset
+│
+├── models/                        # ⚠️ NOT included in repo (generated during training)
+│   ├── random_forest.pkl          #    Trained Random Forest model
+│   ├── decision_tree.pkl          #    Trained Decision Tree model
+│   ├── xgboost.pkl                #    Trained XGBoost model
+│   ├── scaler_*.pkl               #    Fitted scalers
+│   ├── label_encoder_*.pkl        #    Label encoders
+│   ├── confusion_matrix_*.png     #    Confusion matrix plots
+│   ├── roc_curve_*.png            #    ROC curve plots
+│   ├── pr_curve_*.png             #    Precision-Recall curve plots
+│   └── feature_importance_*.png   #    Feature importance plots
+│
+├── app.py                         # Streamlit dashboard application
+├── train_rf.py                    # Model training & evaluation script
+├── generate_dataset.py            # Synthetic dataset generator
+├── utils.py                       # Utility functions (preprocessing, metrics)
+├── requirements.txt               # Python dependencies
+├── Synopsis_Minor_Project.md      # Project synopsis document
+└── README.md                      # You are here!
 ```
 
 ---
 
-## 3. System Architecture
+## 📦 Dataset Instructions
 
-### Data Layer
+> ⚠️ **The dataset and trained models are NOT included in this repository** due to GitHub's 100 MB file size limit.
 
-- Synthetic dataset with 10,000 network flows across 4 traffic classes
-- 14 base features with Gaussian noise injection for realism
-- Configurable class imbalance (50% normal, 50% attacks)
+### Option A: Download the Dataset
 
-### Processing Layer
+📥 **Download from Google Drive:**
+> [📎 PUT YOUR GOOGLE DRIVE LINK HERE]
 
-- Duplicate removal and missing value imputation
-- 4 engineered features: `byte_ratio`, `packet_rate`, `src_dst_ratio`, `error_flag_interact`
-- StandardScaler fitted on training data only
+After downloading, place the CSV file inside the `data/` folder:
 
-### Modelling Layer
+```
+IOT_Minor/
+└── data/
+    └── ML-EdgeIIoT-dataset.csv    ← Place the file here
+```
 
-- **Random Forest** -- 100 trees, balanced class weights, parallelised training
-- **Decision Tree** -- max depth 15, used as a baseline for comparison
-- 5-fold stratified cross-validation on training data
+### Option B: Contact Me
 
-### Evaluation Layer
+📧 If the download link is unavailable, feel free to reach out:
+> **Email:** [PUT YOUR EMAIL HERE]
 
-- Accuracy, Precision, Recall, F1 Score, ROC-AUC
-- Confusion matrix heatmaps
-- ROC and Precision-Recall curves
-- Gini-based and permutation-based feature importance
+### Option C: Generate a Synthetic Dataset
 
-### Interface Layer
-
-- Streamlit web app with model selection, CSV upload, and interactive visualisations
-- All trained models and plots saved to `models/` directory
-
----
-
-## 4. Dataset Design
-
-### Why synthetic?
-
-Real IoT datasets are large, messy, and require hours of preprocessing. A synthetic dataset gives us **controlled ground truth** -- we know exactly which rows are attacks because we generated them.
-
-### How attacks are simulated
-
-Each class is generated with distinct statistical distributions. For example, DoS traffic has extremely high connection rates, while port scans have very short durations and probe many services.
-
-Gaussian noise (8% of feature std) is added to all continuous features to prevent trivially perfect classification.
-
-### Traffic Classes
-
-| Class | Share | Key Behaviour |
-| ----- | ----- | ------------- |
-| Normal | 50% | Moderate packet sizes, regular durations, low error rates |
-| DoS | 20% | High packet sizes, burst connections, elevated errors |
-| Port Scan | 15% | Tiny packets, very short durations, many services probed |
-| Data Exfiltration | 15% | Large outbound bytes, long durations |
-
-### Feature Table
-
-| Feature | What It Represents | Why It Helps Detect Attacks |
-| ------- | ------------------ | --------------------------- |
-| `packet_size` | Network packet size in bytes | DoS sends unusually large packets |
-| `duration` | Connection length in seconds | Port scans are extremely short |
-| `src_bytes` | Bytes from source | Asymmetry reveals abnormal flow |
-| `dst_bytes` | Bytes from destination | Very high in data exfiltration |
-| `wrong_fragment` | Incorrect fragment count | Elevated in crafted packet attacks |
-| `urgent` | Urgent packet count | Rare in normal traffic |
-| `count` | Connections in time window | Burst connections signal DoS |
-| `srv_count` | Distinct services contacted | High values indicate port scanning |
-| `protocol_type` | TCP / UDP / ICMP (encoded) | Attacks prefer certain protocols |
-| `connection_rate` | Connections per second | Extremely high in DoS |
-| `error_rate` | Fraction of errors | Elevated during malformed attacks |
-| `flag` | Connection status flag | Abnormal flags mean incomplete handshakes |
-| `land` | Source equals destination | Land attacks set this to 1 |
-| `logged_in` | Successful login flag | Attacks often fail to authenticate |
-
-### Engineered Features
-
-| Feature | Formula | What It Captures |
-| ------- | ------- | ---------------- |
-| `byte_ratio` | dst_bytes / (src_bytes + 1) | Data flow direction -- high in exfiltration |
-| `packet_rate` | packet_size / (duration + 0.01) | Throughput -- spikes during DoS |
-| `src_dst_ratio` | src_bytes / (dst_bytes + 1) | Inverse flow asymmetry |
-| `error_flag_interact` | error_rate x wrong_fragment | Compound anomaly signal |
-
-### Labelling
-
-| Mode | Classes | Encoding |
-| ---- | ------- | -------- |
-| Binary | Normal vs Attack | 0, 1 |
-| Multiclass | Normal, DoS, Port Scan, Exfiltration | 0, 1, 2, 3 |
-
----
-
-## 5. Methodology
-
-**Step 1 -- Data Cleaning**
-Remove duplicates. Fill missing numeric values with medians, categorical values with modes.
-
-**Step 2 -- Feature Engineering**
-Derive 4 new features from existing columns. Total features go from 14 to 18.
-
-**Step 3 -- Train/Test Split**
-80/20 stratified split. Stratification keeps class proportions consistent in both sets.
-
-**Step 4 -- Feature Scaling**
-StandardScaler normalises all features to zero mean and unit variance. Fitted on train only.
-
-**Step 5 -- Model Training**
-Random Forest (100 trees, balanced weights) and Decision Tree (depth 15) trained on scaled data.
-
-**Step 6 -- Cross-Validation**
-5-fold stratified CV on training set. Reports mean and std for Accuracy, Precision, Recall, F1.
-
-**Step 7 -- Evaluation**
-Full metrics on held-out test set. Confusion matrix, ROC curve, PR curve, feature importance plots.
-
----
-
-## 6. Model Evaluation
-
-### Metrics Explained
-
-| Metric | What It Measures | Why It Matters in IDS |
-| ------ | ---------------- | --------------------- |
-| Accuracy | Overall correct predictions | Quick check, but misleading if classes are imbalanced |
-| Precision | Of predicted attacks, how many are real? | Low precision = too many false alarms |
-| Recall | Of real attacks, how many did we catch? | Low recall = missed attacks (dangerous) |
-| F1 Score | Balance of Precision and Recall | Single number that captures both concerns |
-| ROC-AUC | Discrimination ability across thresholds | Higher = better at separating normal from attack |
-
-### What is a Confusion Matrix?
-
-A confusion matrix shows exactly where the model gets it right and where it makes mistakes. Each row is the actual class, each column is the predicted class. The diagonal shows correct predictions. Off-diagonal entries show specific types of errors -- for instance, how often exfiltration is misclassified as normal traffic.
-
-### Indicative Results (Binary Mode)
-
-| Model | Accuracy | Precision | Recall | F1 | AUC |
-| ----- | -------- | --------- | ------ | -- | --- |
-| Random Forest | ~0.99 | ~0.99 | ~0.99 | ~0.99 | ~1.00 |
-| Decision Tree | ~0.98 | ~0.98 | ~0.98 | ~0.98 | ~0.99 |
-
-### Key takeaway
-
-Random Forest consistently outperforms Decision Tree because it averages 100 decorrelated trees, reducing variance and smoothing the decision boundary.
-
----
-
-## 7. Key Insights
-
-### Most important features
-
-1. **`connection_rate`** -- strongest signal. DoS attacks produce 85 connections/sec vs 10 for normal.
-2. **`packet_rate`** (engineered) -- high throughput in short bursts indicates floods.
-3. **`dst_bytes`** -- exfiltration drives outbound bytes to 5000+ vs 450 for normal.
-4. **`srv_count`** -- port scans probe 45+ services vs 3 for normal traffic.
-
-### What patterns indicate attacks?
-
-| Attack | Signature Pattern |
-| ------ | ----------------- |
-| DoS | Extremely high connection rate, large packets, short duration |
-| Port Scan | Very short duration, many services probed, small packets |
-| Data Exfiltration | Very high outbound bytes, long duration, moderate connection rate |
-
-### Why Random Forest works well here
-
-- Handles mixed feature types (continuous + categorical) natively
-- Robust to the 8% noise injection in the synthetic data
-- Provides interpretable feature importance scores
-
----
-
-## 8. Limitations
-
-- **Synthetic data** -- distributions approximate real traffic but do not replicate it exactly. Validate on real datasets before deployment.
-- **No temporal modelling** -- each flow is classified independently. Sequential attacks (slow scans) may be missed.
-- **Not real-time** -- the pipeline loads all data into memory. Production use requires streaming integration.
-- **No per-prediction explainability** -- feature importance is global, not per-sample. SHAP integration is needed for analyst trust.
-
----
-
-## 9. Future Scope
-
-- Evaluate on real-world IoT datasets (BoT-IoT, IoT-23, CIC-IoT-2023)
-- Add LSTM or Transformer models for sequential traffic patterns
-- Integrate with Scapy or tcpdump for real-time packet capture
-- Add SHAP explainability for per-prediction feature attribution
-- Containerise with Docker and expose predictions via FastAPI
-- Explore federated learning for privacy-preserving distributed training
-
----
-
-## 10. Tech Stack
-
-| Layer | Technology |
-| ----- | ---------- |
-| Language | Python 3.14 |
-| ML Models | scikit-learn (Random Forest, Decision Tree) |
-| Data | pandas, NumPy |
-| Visualisation | Matplotlib, Seaborn |
-| Web UI | Streamlit |
-| Serialisation | joblib |
-| Dataset | Synthetic IoT Traffic (10,000 flows) |
-
----
-
-## 11. How to Run
-
-### Generate dataset
+If you just want to test the project without the real dataset, you can generate a synthetic dataset:
 
 ```bash
 python generate_dataset.py
 ```
 
-### Train models (binary)
+This creates `data/dataset.csv` with 10,000 synthetic network flows — enough to train and test all models.
+
+### 🗂️ About the Dataset
+
+The **Edge-IIoT dataset** contains real-world IoT network traffic with labelled attack categories. Key characteristics:
+
+| Property | Details |
+|----------|---------|
+| Source | Edge-IIoT (IoT/IIoT cybersecurity dataset) |
+| Size | ~78 MB |
+| Features | 14 base features + 4 engineered features |
+| Classes | Normal, DoS, Port Scan, Data Exfiltration |
+| Modes | Binary (Normal vs Attack) and Multiclass |
+
+---
+
+## 🚀 Installation
+
+Follow these steps to set up the project on your machine.
+
+### Prerequisites
+
+- **Python 3.10 or higher** installed ([Download Python](https://www.python.org/downloads/))
+- **Git** installed ([Download Git](https://git-scm.com/downloads))
+- A terminal (PowerShell on Windows, Terminal on Mac/Linux)
+
+### Step-by-Step Setup
+
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/theshivamdhar/Anomaly-Detection-in-IOT-Network-Traffic.git
+cd Anomaly-Detection-in-IOT-Network-Traffic
+```
+
+**2. Create a virtual environment** (recommended)
+
+```bash
+# Windows (PowerShell)
+python -m venv .venv
+.venv\Scripts\Activate
+
+# macOS / Linux
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+**3. Install dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+**4. Add the dataset**
+
+Follow the [Dataset Instructions](#-dataset-instructions) above to either download or generate the dataset.
+
+✅ **Setup complete!** You're ready to train models and launch the dashboard.
+
+---
+
+## ▶️ How to Run
+
+### Step 1: Train the Models
+
+Train all three models (Random Forest, Decision Tree, XGBoost) on the dataset.
+
+**Binary classification** (Normal vs Attack):
 
 ```bash
 python train_rf.py --data data/dataset.csv --mode binary
 ```
 
-### Train models (multiclass)
+**Multiclass classification** (Normal, DoS, Port Scan, Exfiltration):
 
 ```bash
 python train_rf.py --data data/dataset.csv --mode multiclass
 ```
 
-### Launch dashboard
+> 💡 **What happens:** The script preprocesses the data, engineers features, trains all models, runs cross-validation, generates evaluation plots, and saves everything to the `models/` folder.
+
+### Step 2: Launch the Streamlit Dashboard
 
 ```bash
-python -m streamlit run app.py
+streamlit run app.py
+```
+
+This opens a web dashboard in your browser where you can:
+- Select a trained model for predictions
+- Upload CSV files for batch prediction
+- View confusion matrices, ROC curves, and feature importance
+- Explore model comparison metrics
+
+### Quick Start (All Commands)
+
+```bash
+# 1. Generate synthetic dataset (if you don't have the real one)
+python generate_dataset.py
+
+# 2. Train models — binary mode
+python train_rf.py --data data/dataset.csv --mode binary
+
+# 3. Train models — multiclass mode
+python train_rf.py --data data/dataset.csv --mode multiclass
+
+# 4. Launch dashboard
+streamlit run app.py
 ```
 
 ---
 
-## Project Structure
+## 🔬 Model Training Details
 
-```text
-IOT_Minor/
-|-- data/
-|   +-- dataset.csv
-|-- models/
-|   |-- random_forest.pkl
-|   |-- decision_tree.pkl
-|   |-- scaler_rf_*.pkl
-|   |-- confusion_matrix_*.png
-|   |-- roc_curve_*.png
-|   |-- pr_curve_*.png
-|   |-- feature_importance_*.png
-|   +-- permutation_importance_*.png
-|-- generate_dataset.py
-|-- train_rf.py
-|-- utils.py
-|-- app.py
-|-- requirements.txt
-+-- README.md
+### Pipeline Flow
+
 ```
+Raw CSV Data
+     ↓
+Preprocessing (clean, deduplicate, impute missing values)
+     ↓
+Feature Engineering (4 derived features added)
+     ↓
+Train/Test Split (80/20, stratified)
+     ↓
+Feature Scaling (StandardScaler — fitted on train only)
+     ↓
+Model Training (Random Forest + Decision Tree + XGBoost)
+     ↓
+5-Fold Stratified Cross-Validation
+     ↓
+Evaluation (metrics, confusion matrix, ROC, PR curves)
+     ↓
+Save Models & Plots → models/ folder
+```
+
+### Models Used
+
+| Model | Configuration | Strengths |
+|-------|--------------|-----------|
+| **Random Forest** | 100 trees, balanced class weights | Robust, handles noise well, provides feature importance |
+| **Decision Tree** | Max depth 15 | Fast, interpretable, good baseline |
+| **XGBoost** | Gradient boosted trees | High accuracy, handles class imbalance, regularized |
+
+### Engineered Features
+
+| Feature | Formula | What It Captures |
+|---------|---------|-----------------|
+| `byte_ratio` | dst_bytes / (src_bytes + 1) | Data flow direction — high in exfiltration |
+| `packet_rate` | packet_size / (duration + 0.01) | Throughput — spikes during DoS |
+| `src_dst_ratio` | src_bytes / (dst_bytes + 1) | Inverse flow asymmetry |
+| `error_flag_interact` | error_rate × wrong_fragment | Compound anomaly signal |
+
+### Saved Outputs
+
+After training, the `models/` folder will contain:
+- ✅ Trained model files (`.pkl`) — Random Forest, Decision Tree, XGBoost
+- ✅ Scalers and label encoders (`.pkl`)
+- ✅ Confusion matrix heatmaps (`.png`)
+- ✅ ROC curves (`.png`)
+- ✅ Precision-Recall curves (`.png`)
+- ✅ Feature importance plots (`.png`)
+- ✅ Cross-validation results (`.csv`)
+- ✅ Model comparison table (`.csv`)
 
 ---
 
-## References
+## 📊 Results
+
+### Performance Summary (Binary Mode)
+
+| Model | Accuracy | Precision | Recall | F1 Score | ROC-AUC |
+|-------|----------|-----------|--------|----------|---------|
+| Random Forest | ~0.99 | ~0.99 | ~0.99 | ~0.99 | ~1.00 |
+| Decision Tree | ~0.98 | ~0.98 | ~0.98 | ~0.98 | ~0.99 |
+| XGBoost | ~0.99 | ~0.99 | ~0.99 | ~0.99 | ~1.00 |
+
+### Key Insights
+
+- **Random Forest** and **XGBoost** consistently outperform Decision Tree
+- Most important features: `connection_rate`, `packet_rate`, `dst_bytes`, `srv_count`
+- XGBoost handles class imbalance better with built-in regularization
+
+### Attack Signatures Learned
+
+| Attack Type | Key Pattern |
+|-------------|-------------|
+| **DoS** | Extremely high connection rate, large packets, short duration |
+| **Port Scan** | Very short duration, many services probed, tiny packets |
+| **Data Exfiltration** | Very high outbound bytes, long duration, moderate connection rate |
+
+---
+
+## 📸 Screenshots
+
+> Add screenshots of your running application here to showcase the project visually.
+
+| Screenshot | Description |
+|------------|-------------|
+| *[Insert Dashboard Screenshot]* | Streamlit dashboard — main page |
+| *[Insert Confusion Matrix Screenshot]* | Confusion matrix visualization |
+| *[Insert ROC Curve Screenshot]* | ROC curve comparison across models |
+| *[Insert Feature Importance Screenshot]* | Feature importance bar chart |
+| *[Insert Prediction Screenshot]* | Real-time prediction results |
+
+> 💡 **Tip:** Take screenshots after running the dashboard with `streamlit run app.py` and replace the placeholders above.
+
+---
+
+## ⚠️ Limitations
+
+- **Dataset not included** — Must be downloaded separately or generated synthetically due to GitHub size limits
+- **Synthetic data limitations** — Generated distributions approximate real traffic but don't replicate it exactly
+- **No temporal modelling** — Each flow is classified independently; slow/sequential attacks may be missed
+- **Not real-time** — The pipeline loads all data into memory; production use requires streaming integration
+- **No per-prediction explainability** — Feature importance is global, not per-sample (SHAP integration would help)
+
+---
+
+## 🚀 Future Improvements
+
+- 🌐 **Real-time packet capture** — Integrate with Scapy or tcpdump for live traffic analysis
+- 🧠 **Deep Learning models** — Add LSTM or Transformer for sequential traffic patterns
+- 📡 **API deployment** — Expose predictions via FastAPI or Flask REST API
+- 🐳 **Containerization** — Docker support for easy deployment
+- 🔍 **SHAP explainability** — Per-prediction feature attribution for analyst trust
+- 📊 **Real-world dataset validation** — Test on BoT-IoT, IoT-23, CIC-IoT-2023
+- 🔒 **Federated learning** — Privacy-preserving distributed training across IoT networks
+
+---
+
+## 📚 References
 
 - Breiman, L. (2001). Random Forests. *Machine Learning*, 45(1), 5-32.
+- Chen, T., & Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System. *KDD '16*.
 - Meidan, Y., et al. (2018). N-BaIoT: Network-Based Detection of IoT Botnet Attacks. *IEEE Pervasive Computing*.
 - Koroniotis, N., et al. (2019). Towards the Development of Realistic Botnet Dataset in the IoT. *Future Generation Computer Systems*.
 - Kolias, C., et al. (2017). DDoS in the IoT: Mirai and Other Botnets. *IEEE Computer*.
 
 ---
 
-*B.Tech Minor Project -- Academic use only.*
+## 👤 Author
+
+| | |
+|---|---|
+| **Name** | Shivam Dhar |
+| **Program** | B.Tech CSE |
+| **GitHub** | [@theshivamdhar](https://github.com/theshivamdhar) |
+| **Email** | *[PUT YOUR EMAIL HERE]* |
+
+---
+
+<p align="center">
+  ⭐ <b>If you found this project helpful, consider giving it a star!</b> ⭐
+</p>
+
+<p align="center">
+  <i>Built with ❤️ for academic research — B.Tech Minor Project 2026</i>
+</p>
